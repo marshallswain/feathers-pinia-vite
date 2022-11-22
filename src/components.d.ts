@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     DaisyCard: typeof import('daisy-ui-kit')['DaisyCard']
     DaisyCardBody: typeof import('daisy-ui-kit')['DaisyCardBody']
     DaisyCardTitle: typeof import('daisy-ui-kit')['DaisyCardTitle']
+    DaisyCheckbox: typeof import('daisy-ui-kit')['DaisyCheckbox']
     DaisyDropdown: typeof import('daisy-ui-kit')['DaisyDropdown']
     DaisyDropdownContent: typeof import('daisy-ui-kit')['DaisyDropdownContent']
     DaisyFlex: typeof import('daisy-ui-kit')['DaisyFlex']
@@ -46,6 +47,8 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Select: typeof import('daisy-ui-kit')['Select']
+    TaskList: typeof import('./components/TaskList.vue')['default']
+    TaskListItem: typeof import('./components/TaskListItem.vue')['default']
     Text: typeof import('daisy-ui-kit')['Text']
   }
 }
