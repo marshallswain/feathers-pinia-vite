@@ -47,6 +47,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Select: typeof import('daisy-ui-kit')['Select']
+    Task: typeof import('./components/Task.vue')['default']
     TaskList: typeof import('./components/TaskList.vue')['default']
     TaskListItem: typeof import('./components/TaskListItem.vue')['default']
     Text: typeof import('daisy-ui-kit')['Text']

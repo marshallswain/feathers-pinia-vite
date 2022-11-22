@@ -19,6 +19,6 @@ export const useTaskStore = () => {
 
   return {
     taskStore: store,
-    Task: Task as typeof store.Model,
+    Task,
   }
 }
