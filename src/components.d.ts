@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     CardBody: typeof import('daisy-ui-kit')['CardBody']
     CardTitle: typeof import('daisy-ui-kit')['CardTitle']
     DaisyButton: typeof import('daisy-ui-kit')['DaisyButton']
+    DaisyButtonGroup: typeof import('daisy-ui-kit')['DaisyButtonGroup']
     DaisyCard: typeof import('daisy-ui-kit')['DaisyCard']
     DaisyCardBody: typeof import('daisy-ui-kit')['DaisyCardBody']
     DaisyCardTitle: typeof import('daisy-ui-kit')['DaisyCardTitle']
