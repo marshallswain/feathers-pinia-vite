@@ -1,6 +1,6 @@
 import type { Id } from '@feathersjs/feathers'
 import { BaseModel } from '../store/store.pinia'
-import { associateGet } from 'feathers-pinia'
+import { associateGet, type BaseModelAssociations } from 'feathers-pinia'
 import { User } from './user'
 
 export class Task extends BaseModel {
@@ -9,6 +9,7 @@ export class Task extends BaseModel {
   isCompleted = false
   userId = ''
 
+  static associations: BaseModelAssociations = {}
   user?: typeof User
 
   // Minimum required constructor

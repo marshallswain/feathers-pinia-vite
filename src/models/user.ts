@@ -1,5 +1,5 @@
 import { BaseModel } from '../store/store.pinia'
-import { associateFind, type AssociateFindUtils } from 'feathers-pinia'
+import { associateFind, type BaseModelAssociations, type AssociateFindUtils } from 'feathers-pinia'
 import { Task } from './task'
 
 export class User extends BaseModel {
@@ -8,6 +8,7 @@ export class User extends BaseModel {
   email = ''
   password = ''
 
+  static associations: BaseModelAssociations = {}
   tasks?: Task[]
   _tasks?: AssociateFindUtils<Task>
 
