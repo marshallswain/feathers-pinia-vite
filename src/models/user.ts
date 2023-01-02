@@ -1,31 +1,48 @@
-import { BaseModel } from '../store/store.pinia'
-import { associateFind, type BaseModelAssociations, type AssociateFindUtils } from 'feathers-pinia'
-import { Task } from './task'
+import { type ModelInstance, associateFind, feathersPiniaHooks, useFeathersModel, useInstanceDefaults } from 'feathers-pinia'
 
-export class User extends BaseModel {
-  _id?: string
-  name = ''
-  email = ''
-  password = ''
+import type { User, UserData, UserQuery } from 'feathers-pinia-api'
 
-  static associations: BaseModelAssociations = {}
-  tasks?: Task[]
-  _tasks?: AssociateFindUtils<Task>
+export const useUsersConfig = () => {
+  const { $pinia, idField, whitelist } = useFeathersPiniaConfig()
+  const servicePath = 'users'
+  const service = useFeathersService<User, UserQuery>(servicePath)
+  const name = 'User'
 
-  // Minimum required constructor
-  constructor(data: Partial<User> = {}, options: Record<string, any> = {}) {
-    super(data, options)
-    this.init(data)
-  }
+  return { $pinia, idField, whitelist, servicePath, service, name }
+}
 
-  // optional for setting up data objects and/or associations
-  static setupInstance(data: Partial<User>) {
-    associateFind(data as any, 'tasks', {
-      Model: Task,
-      makeParams: () => ({ query: { userId: data._id } }),
-      handleSetInstance(task: Task) {
-        task.userId = this._id
-      },
-    })
-  }
+export const useUserModel = () => {
+  const { idField, service, name } = useUsersConfig()
+
+  const Model = useModel(name, () => {
+    const modelFn = (data: ModelInstance<User>) => {
+      const defaults = {
+        email: '',
+        password: '',
+      }
+      const withDefaults = useInstanceDefaults(defaults, data)
+
+      // add tasks to each user
+      const Task = useTaskModel()
+      const withTasks = associateFind(withDefaults, 'tasks', {
+        Model: Task,
+        makeParams: data => ({ query: { userId: data._id } }),
+        handleSetInstance(task) {
+          task.userId = data._id
+        },
+      })
+      return withTasks
+    }
+    return useFeathersModel<User, UserData, UserQuery, typeof modelFn>(
+      { name, idField, service },
+      modelFn,
+    )
+  })
+
+  onModelReady(name, () => {
+    service.hooks({ around: { all: [...feathersPiniaHooks(Model)] } })
+  })
+  connectModel(name, () => Model, useUserStore)
+
+  return Model
 }

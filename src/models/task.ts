@@ -1,28 +1,44 @@
-import type { Id } from '@feathersjs/feathers'
-import { BaseModel } from '../store/store.pinia'
-import { associateGet, type BaseModelAssociations } from 'feathers-pinia'
-import { User } from './user'
+import { type ModelInstance } from 'feathers-pinia'
+import type { Tasks, TasksData, TasksQuery } from 'feathers-pinia-api'
 
-export class Task extends BaseModel {
-  _id?: string
-  description = ''
-  isCompleted = false
-  userId = ''
+export const useTasksConfig = () => {
+  const { $pinia, idField, whitelist } = useFeathersPiniaConfig()
+  const servicePath = 'tasks'
+  const service = useFeathersService<Tasks, TasksQuery>(servicePath)
+  const name = 'Task'
 
-  static associations: BaseModelAssociations = {}
-  user?: typeof User
+  return { $pinia, idField, whitelist, servicePath, service, name }
+}
 
-  // Minimum required constructor
-  constructor(data: Partial<Task> = {}, options: Record<string, any> = {}) {
-    super(data, options)
-    this.init(data)
-  }
+export const useTaskModel = () => {
+  const { name, idField, service } = useTasksConfig()
 
-  // optional for setting up data objects and/or associations
-  static setupInstance(data: Partial<Task>) {
-    associateGet(data as any, 'user', {
-      Model: User,
-      getId: () => data.userId as Id,
-    })
-  }
+  const Model = useModel(name, () => {
+    const modelFn = (data: ModelInstance<Tasks>) => {
+      const defaults = {
+        description: '',
+        isComplete: false,
+      }
+      const withDefaults = useInstanceDefaults(defaults, data)
+
+      // add user to each task
+      const User = useUserModel() as any
+      const withUser = associateGet(withDefaults, 'user', {
+        Model: User,
+        getId: (data: ModelInstance<Tasks>) => data.userId as string,
+      })
+      return withUser
+    }
+    return useFeathersModel<Tasks, TasksData, TasksQuery, typeof modelFn>(
+      { name, idField, service },
+      modelFn,
+    )
+  })
+
+  onModelReady(name, () => {
+    service.hooks({ around: { all: [...feathersPiniaHooks(Model)] } })
+  })
+  connectModel(name, () => Model, useTaskStore)
+
+  return Model
 }
