@@ -29,9 +29,33 @@ export default defineConfig({
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
-      imports: ['vue', 'vue-router', 'vue-i18n', 'vue/macros', '@vueuse/head', '@vueuse/core'],
+      imports: [
+        'vue',
+        'vue-router',
+        'vue-i18n',
+        'vue/macros',
+        '@vueuse/head',
+        '@vueuse/core',
+        {
+          'feathers-pinia': [
+            'useFeathersModel',
+            'useBaseModel',
+            'useInstanceDefaults',
+            'useFeathersInstance',
+            'associateGet',
+            'associateFind',
+            'useService',
+            'useAuth',
+            'useFind',
+            'useGet',
+            'useClone',
+            'useClones',
+            'feathersPiniaHooks',
+          ],
+        },
+      ],
       dts: 'src/auto-imports.d.ts',
-      dirs: ['src/composables', 'src/store'],
+      dirs: ['src/composables', 'src/models', 'src/stores'],
       vueTemplate: true,
     }),
 
