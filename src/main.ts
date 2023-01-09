@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
-import { pinia } from './modules/pinia'
 import { router } from './router'
+import { pinia } from './modules/pinia'
 import { createHead } from '@vueuse/head'
 
 const head = createHead()

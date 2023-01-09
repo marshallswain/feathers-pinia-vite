@@ -7,6 +7,7 @@ import Layouts from 'vite-plugin-vue-layouts'
 import Components from 'unplugin-vue-components/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import { feathersPiniaAutoImport } from 'feathers-pinia'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -36,23 +37,7 @@ export default defineConfig({
         'vue/macros',
         '@vueuse/head',
         '@vueuse/core',
-        {
-          'feathers-pinia': [
-            'useFeathersModel',
-            'useBaseModel',
-            'useInstanceDefaults',
-            'useFeathersInstance',
-            'associateGet',
-            'associateFind',
-            'useService',
-            'useAuth',
-            'useFind',
-            'useGet',
-            'useClone',
-            'useClones',
-            'feathersPiniaHooks',
-          ],
-        },
+        feathersPiniaAutoImport,
       ],
       dts: 'src/auto-imports.d.ts',
       dirs: ['src/composables', 'src/models', 'src/stores'],

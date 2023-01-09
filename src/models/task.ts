@@ -2,12 +2,12 @@ import { type ModelInstance } from 'feathers-pinia'
 import type { Tasks, TasksData, TasksQuery } from 'feathers-pinia-api'
 
 export const useTasksConfig = () => {
-  const { $pinia, idField, whitelist } = useFeathersPiniaConfig()
+  const { pinia, idField, whitelist } = useFeathersPiniaConfig()
   const servicePath = 'tasks'
   const service = useFeathersService<Tasks, TasksQuery>(servicePath)
   const name = 'Task'
 
-  return { $pinia, idField, whitelist, servicePath, service, name }
+  return { pinia, idField, whitelist, servicePath, service, name }
 }
 
 export const useTaskModel = () => {
@@ -29,10 +29,7 @@ export const useTaskModel = () => {
       })
       return withUser
     }
-    return useFeathersModel<Tasks, TasksData, TasksQuery, typeof modelFn>(
-      { name, idField, service },
-      modelFn,
-    )
+    return useFeathersModel<Tasks, TasksData, TasksQuery, typeof modelFn>({ name, idField, service }, modelFn)
   })
 
   onModelReady(name, () => {

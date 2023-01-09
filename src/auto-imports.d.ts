@@ -18,7 +18,7 @@ declare global {
   const computedEager: typeof import('@vueuse/core')['computedEager']
   const computedInject: typeof import('@vueuse/core')['computedInject']
   const computedWithControl: typeof import('@vueuse/core')['computedWithControl']
-  const connectModel: typeof import('./composables/use-feathers-models')['connectModel']
+  const connectModel: typeof import('feathers-pinia')['connectModel']
   const controlledComputed: typeof import('@vueuse/core')['controlledComputed']
   const controlledRef: typeof import('@vueuse/core')['controlledRef']
   const createApp: typeof import('vue')['createApp']
@@ -39,7 +39,6 @@ declare global {
   const feathersPiniaHooks: typeof import('feathers-pinia')['feathersPiniaHooks']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
-  const getModelNamespace: typeof import('./composables/use-feathers-models')['getModelNamespace']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -62,7 +61,7 @@ declare global {
   const onErrorCaptured: typeof import('vue')['onErrorCaptured']
   const onKeyStroke: typeof import('@vueuse/core')['onKeyStroke']
   const onLongPress: typeof import('@vueuse/core')['onLongPress']
-  const onModelReady: typeof import('./composables/use-feathers-models')['onModelReady']
+  const onModelReady: typeof import('feathers-pinia')['onModelReady']
   const onMounted: typeof import('vue')['onMounted']
   const onRenderTracked: typeof import('vue')['onRenderTracked']
   const onRenderTriggered: typeof import('vue')['onRenderTriggered']
@@ -171,7 +170,7 @@ declare global {
   const useFeathers: typeof import('./composables/use-feathers')['useFeathers']
   const useFeathersInstance: typeof import('feathers-pinia')['useFeathersInstance']
   const useFeathersModel: typeof import('feathers-pinia')['useFeathersModel']
-  const useFeathersPiniaConfig: typeof import('./models/global-config')['useFeathersPiniaConfig']
+  const useFeathersPiniaConfig: typeof import('./models/feathers-pinia-config')['useFeathersPiniaConfig']
   const useFeathersService: typeof import('./composables/use-feathers')['useFeathersService']
   const useFetch: typeof import('@vueuse/core')['useFetch']
   const useFileDialog: typeof import('@vueuse/core')['useFileDialog']
@@ -203,7 +202,7 @@ declare global {
   const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery']
   const useMemoize: typeof import('@vueuse/core')['useMemoize']
   const useMemory: typeof import('@vueuse/core')['useMemory']
-  const useModel: typeof import('./composables/use-feathers-models')['useModel']
+  const useModel: typeof import('feathers-pinia')['useModel']
   const useMounted: typeof import('@vueuse/core')['useMounted']
   const useMouse: typeof import('@vueuse/core')['useMouse']
   const useMouseInElement: typeof import('@vueuse/core')['useMouseInElement']
@@ -322,7 +321,7 @@ declare module 'vue' {
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
     readonly computedInject: UnwrapRef<typeof import('@vueuse/core')['computedInject']>
     readonly computedWithControl: UnwrapRef<typeof import('@vueuse/core')['computedWithControl']>
-    readonly connectModel: UnwrapRef<typeof import('./composables/use-feathers-models')['connectModel']>
+    readonly connectModel: UnwrapRef<typeof import('feathers-pinia')['connectModel']>
     readonly controlledComputed: UnwrapRef<typeof import('@vueuse/core')['controlledComputed']>
     readonly controlledRef: UnwrapRef<typeof import('@vueuse/core')['controlledRef']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
@@ -343,7 +342,6 @@ declare module 'vue' {
     readonly feathersPiniaHooks: UnwrapRef<typeof import('feathers-pinia')['feathersPiniaHooks']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly getModelNamespace: UnwrapRef<typeof import('./composables/use-feathers-models')['getModelNamespace']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -366,7 +364,7 @@ declare module 'vue' {
     readonly onErrorCaptured: UnwrapRef<typeof import('vue')['onErrorCaptured']>
     readonly onKeyStroke: UnwrapRef<typeof import('@vueuse/core')['onKeyStroke']>
     readonly onLongPress: UnwrapRef<typeof import('@vueuse/core')['onLongPress']>
-    readonly onModelReady: UnwrapRef<typeof import('./composables/use-feathers-models')['onModelReady']>
+    readonly onModelReady: UnwrapRef<typeof import('feathers-pinia')['onModelReady']>
     readonly onMounted: UnwrapRef<typeof import('vue')['onMounted']>
     readonly onRenderTracked: UnwrapRef<typeof import('vue')['onRenderTracked']>
     readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
@@ -475,7 +473,7 @@ declare module 'vue' {
     readonly useFeathers: UnwrapRef<typeof import('./composables/use-feathers')['useFeathers']>
     readonly useFeathersInstance: UnwrapRef<typeof import('feathers-pinia')['useFeathersInstance']>
     readonly useFeathersModel: UnwrapRef<typeof import('feathers-pinia')['useFeathersModel']>
-    readonly useFeathersPiniaConfig: UnwrapRef<typeof import('./models/global-config')['useFeathersPiniaConfig']>
+    readonly useFeathersPiniaConfig: UnwrapRef<typeof import('./models/feathers-pinia-config')['useFeathersPiniaConfig']>
     readonly useFeathersService: UnwrapRef<typeof import('./composables/use-feathers')['useFeathersService']>
     readonly useFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
@@ -507,7 +505,7 @@ declare module 'vue' {
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
-    readonly useModel: UnwrapRef<typeof import('./composables/use-feathers-models')['useModel']>
+    readonly useModel: UnwrapRef<typeof import('feathers-pinia')['useModel']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
     readonly useMouse: UnwrapRef<typeof import('@vueuse/core')['useMouse']>
     readonly useMouseInElement: UnwrapRef<typeof import('@vueuse/core')['useMouseInElement']>

@@ -1,14 +1,20 @@
-import { type ModelInstance, associateFind, feathersPiniaHooks, useFeathersModel, useInstanceDefaults } from 'feathers-pinia'
+import {
+  type ModelInstance,
+  associateFind,
+  feathersPiniaHooks,
+  useFeathersModel,
+  useInstanceDefaults,
+} from 'feathers-pinia'
 
 import type { User, UserData, UserQuery } from 'feathers-pinia-api'
 
 export const useUsersConfig = () => {
-  const { $pinia, idField, whitelist } = useFeathersPiniaConfig()
+  const { pinia, idField, whitelist } = useFeathersPiniaConfig()
   const servicePath = 'users'
   const service = useFeathersService<User, UserQuery>(servicePath)
   const name = 'User'
 
-  return { $pinia, idField, whitelist, servicePath, service, name }
+  return { pinia, idField, whitelist, servicePath, service, name }
 }
 
 export const useUserModel = () => {
@@ -26,17 +32,14 @@ export const useUserModel = () => {
       const Task = useTaskModel()
       const withTasks = associateFind(withDefaults, 'tasks', {
         Model: Task,
-        makeParams: data => ({ query: { userId: data._id } }),
+        makeParams: (data) => ({ query: { userId: data._id } }),
         handleSetInstance(task) {
           task.userId = data._id
         },
       })
       return withTasks
     }
-    return useFeathersModel<User, UserData, UserQuery, typeof modelFn>(
-      { name, idField, service },
-      modelFn,
-    )
+    return useFeathersModel<User, UserData, UserQuery, typeof modelFn>({ name, idField, service }, modelFn)
   })
 
   onModelReady(name, () => {
