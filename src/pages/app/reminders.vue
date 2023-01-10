@@ -8,7 +8,9 @@ meta:
 </script>
 
 <template>
-  <DaisyFlex col items-center justify-center class="h-full gap-2 text-center">
-    <DaisyText size="7xl">Reminders</DaisyText>
+  <DaisyFlex col items-center class="h-full gap-2">
+    <div class="mt-16"></div>
+
+    <TaskList />
   </DaisyFlex>
 </template>
