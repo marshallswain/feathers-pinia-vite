@@ -4,7 +4,7 @@ Vue 3 + TypeScript + Vite
 
 This template contains a Feathers-Pinia application running on Vite. It is already pre-loaded with great Vite plugins for auto-importing components and composables.  It also uses [DaisyUI Kit](https://daisyuikit.com) with all components prefixed with `Daisy`, like `<DaisyButton>`.
 
-In order to use this repo, you need a working FeathersJS server.  You can find one at the [feathers-pinia-api](https:github.com/marshallswain/feathers-pinia-api) repo.
+In order to use this repo, you need a working FeathersJS server.  You can find one at the [feathers-pinia-api](https://github.com/marshallswain/feathers-pinia-api) repo.
 
 The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
